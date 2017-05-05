@@ -6,14 +6,9 @@ class Main extends React.Component {
         super(props);
         this.state = {
             tracks: [],
-            isLoading: true
+            isLoading: true,
+            //searchStr: ''
         }
-    }
-
-    millisToMinutesAndSeconds(millis) {
-        let minutes = Math.floor(millis / 60000);
-        let seconds = ((millis % 60000) / 1000).toFixed(0);
-        return (seconds == 60 ? (minutes+1) + ":00" : minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
     }
 
     getArtist(artist) {
@@ -55,23 +50,27 @@ class Main extends React.Component {
     }
 
     getTracks(tracksInfo) {
+        //let that = this;
         let tracks = tracksInfo.map((p) => {
             return p.then(function(obj) {
                 return obj.data.items.map((tracksData) => {
-                    let trackObj = {
-                        "artist": tracksData.artists[0].name,
-                        "trackName": tracksData.name,
-                        "duration": tracksData.duration_ms
-                    }
-                    return trackObj
+                    //let artistName = tracksData.artists[0].name;
+                    //if(that.state.searchStr.indexOf(artistName.toUpperCase()) != -1) {
+                        let trackObj = {
+                            "artist": tracksData.artists[0].name,
+                            "trackName": tracksData.name,
+                            "duration": tracksData.duration_ms
+                        }
+                        return trackObj
+                    //}
                 })
             })
         })
 
         Promise.all(tracks).then((values) => {
             let totTracks = values.reduce((prev, curr) => [...prev, ...curr], [])
-            let randomPlayList = this.getRandomTracks(100,totTracks);
-            randomPlayList.sort(function(a, b) {
+            //let randomPlayList = this.getRandomTracks(100,totTracks);
+            totTracks.sort(function(a, b) {
                 const artistA = a.artist.toUpperCase(); 
                 const artistB = b.artist.toUpperCase(); 
                 if (artistA < artistB) {
@@ -85,20 +84,24 @@ class Main extends React.Component {
 
             this.setState({
                 isLoading: false,
-                tracks:randomPlayList
+                tracks:totTracks
             })
         })
     }
 
-    getRandomTracks(num, tracks) {
+    /*getRandomTracks(num, tracks) {
 	    const randomResults = [];
 	    for(let i = 0; i < num; i++) {
 		    randomResults.push(tracks[ Math.floor(Math.random() * tracks.length) ])
 	    }
 	    return randomResults;   
-    }
+    }*/
 
     search(artists) {
+        /*this.setState({
+            searchStr: artists.join(' ').toUpperCase()
+        });*/
+
         this.getArtists(artists)
             .then(function(artistsData) {   
                 artists = artistsData.map(a => a.artists.items[0]);
