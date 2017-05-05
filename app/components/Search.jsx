@@ -19,18 +19,20 @@ class Search extends React.Component {
     }
     render() {
         return (
-            <div>
-                <form onSubmit={this.onFormSubmit}>
-                    <div>
-                        <label>
-                            Enter artists whose track you want to generate(atmost 5)
-                            <textarea rows="5" placeholder="Enter artists on separate lines" ref="artists"></textarea>
-                        </label>
-                    </div>
-                    <div>
-                        <button className="button expanded">Generate</button>
-                    </div>
-                </form>
+            <div className="row">
+                <div className="columns medium-6 large-4 small-centered">
+                    <form onSubmit={this.onFormSubmit}>
+                        <div>
+                            <label>
+                                Enter artists whose track you want to generate(atmost 5)
+                                <textarea rows="5" placeholder="Enter artists on separate lines" ref="artists"></textarea>
+                            </label>
+                        </div>
+                        <div>
+                            <button className="button expanded">Generate</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         )
     }

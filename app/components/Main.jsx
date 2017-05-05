@@ -71,6 +71,18 @@ class Main extends React.Component {
         Promise.all(tracks).then((values) => {
             let totTracks = values.reduce((prev, curr) => [...prev, ...curr], [])
             let randomPlayList = this.getRandomTracks(100,totTracks);
+            randomPlayList.sort(function(a, b) {
+                const artistA = a.artist.toUpperCase(); 
+                const artistB = b.artist.toUpperCase(); 
+                if (artistA < artistB) {
+                    return -1;
+                }
+                if (artistA > artistB) {
+                    return 1;
+                }
+                return 0;
+            });
+
             this.setState({
                 isLoading: false,
                 tracks:randomPlayList
@@ -98,7 +110,7 @@ class Main extends React.Component {
     render() {
         return (
             <div className="row">
-                <div className="columns medium-6 large-4 small-centered">
+                <div>
                     {React.cloneElement(this.props.children, 
                                 {search : this.search.bind(this), tracks: this.state.tracks, isLoading: this.state.isLoading})}
                 </div>
