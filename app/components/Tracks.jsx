@@ -4,8 +4,8 @@ class Tracks extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            track: false,
-            artist: true,
+            track: true,
+            artist: false,
             duration: false,
             tracks: props.tracks,
             isLoading: props.isLoading
@@ -140,7 +140,7 @@ class Tracks extends React.Component {
             return (
                 <div className="row">
                     <div className="columns medium-6 large-4 small-centered">
-                        <h4>Loading...</h4>
+                        <h1 className="page-title">LOADING...</h1>
                     </div>
                 </div>
             )
@@ -150,13 +150,14 @@ class Tracks extends React.Component {
                 <div className="row">
                     <div className="columns large-8 small-centered">
                         <a href="/">Go Back</a>
+                        <h1 className="page-title">Tracks List</h1>
                         <table className="hover">
                             <thead>
                                 <tr>
-                                    <th width="20">#</th>
-                                    <th width="150"><a id="track" onClick={this.handleTrackClick.bind(this)}>Track</a></th>
-                                    <th width="150"><a id="artist" onClick={this.handleArtistClick.bind(this)}>Artist</a></th>
-                                    <th width="150"><a id="duration" onClick={this.handleDurationClick.bind(this)}>Duration</a></th>
+                                    <th>#</th>
+                                    <th><a onClick={this.handleTrackClick.bind(this)}>Track</a></th>
+                                    <th><a onClick={this.handleArtistClick.bind(this)}>Artist</a></th>
+                                    <th><a onClick={this.handleDurationClick.bind(this)}>Duration</a></th>
                                 </tr>
                             </thead>
                             <tbody>

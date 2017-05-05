@@ -23,8 +23,9 @@ class Search extends React.Component {
                 <div className="columns medium-6 large-4 small-centered">
                     <form onSubmit={this.onFormSubmit}>
                         <div>
+                            <h1 className="page-title">Track Generator</h1>
                             <label>
-                                Enter artists whose track you want to generate(atmost 5)
+                                Enter artists whose track you want to generate
                                 <textarea rows="5" placeholder="Enter artists on separate lines" ref="artists"></textarea>
                             </label>
                         </div>

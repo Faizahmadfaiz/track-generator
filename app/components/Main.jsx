@@ -71,12 +71,12 @@ class Main extends React.Component {
             let totTracks = values.reduce((prev, curr) => [...prev, ...curr], [])
             //let randomPlayList = this.getRandomTracks(100,totTracks);
             totTracks.sort(function(a, b) {
-                const artistA = a.artist.toUpperCase(); 
-                const artistB = b.artist.toUpperCase(); 
-                if (artistA < artistB) {
+                const trackA = a.trackName.toUpperCase(); 
+                const trackB = b.trackName.toUpperCase(); 
+                if (trackA < trackB) {
                     return -1;
                 }
-                if (artistA > artistB) {
+                if (trackA > trackB) {
                     return 1;
                 }
                 return 0;
